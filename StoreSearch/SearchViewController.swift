@@ -24,6 +24,9 @@ class SearchViewController: UIViewController {
         tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
         
         tableView.rowHeight = 80
+        
+        cellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +36,7 @@ class SearchViewController: UIViewController {
     
     struct TableViewCellIdentifiers {
         static let searchResultCell = "SearchResultCell"
+        static let nothingFoundCell = "NothingFoundCell"
     }
 }
 
@@ -41,7 +45,6 @@ extension SearchViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
 
         searchResults = [SearchResult]()
-        
         if searchBar.text != "justin bieber" {
             for i in 0...2 {
                 let searchResult = SearchResult()
@@ -50,7 +53,6 @@ extension SearchViewController: UISearchBarDelegate {
                 searchResults.append(searchResult)
             }
         }
-        
         hasSearched = true
         
         tableView.reloadData()
@@ -73,28 +75,20 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cellIdentifier = "SearchResultCell"
-//        
-//        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell!
-//        if cell == nil {
-//            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
-//        }
-        let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultCell
-        
+//        let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultCell
         if searchResults.count == 0 {
-//            cell.textLabel!.text = "(Nothing found)"
-//            cell.detailTextLabel!.text = ""
-            cell.nameLabel.text = "(Nothing found)"
-            cell.artistNameLabel.text = ""
+            return tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.nothingFoundCell, forIndexPath: indexPath) as! UITableViewCell
+//            cell.nameLabel.text = "(Nothing found)"
+//            cell.artistNameLabel.text = ""
         } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultCell
+            
             let searchResult = searchResults[indexPath.row]
-//            cell.textLabel!.text = searchResult.name
-//            cell.detailTextLabel!.text = searchResult.artistName
             cell.nameLabel.text = searchResult.name
             cell.artistNameLabel.text = searchResult.artistName
+            return cell
         }
-        
-        return cell
+//        return cell
     }
     
 }
