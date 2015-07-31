@@ -75,6 +75,24 @@ class SearchViewController: UIViewController {
         return nil
     }
     
+    func parseDictionary(dictionary: [String: AnyObject]) {
+        if let array: AnyObject = dictionary["results"] {
+            for resultDict in array as! [AnyObject] {
+                if let resultDict = resultDict as? [String: AnyObject] {
+                    if let wrapperType = resultDict["wrapperType"] as? String {
+                        if let kind = resultDict["kind"] as? String {
+                            println("wrapperType: \(wrapperType), kind: \(kind)")
+                        }
+                    }
+                } else {
+                    println("Expected a dictionary")
+                }
+            }
+        } else {
+            println("Expected 'results' array")
+        }
+    }
+    
     func showNetworkError() {
         let alert = UIAlertController(title: "Whoops...", message: "There was an error reading from the iTunes Store. Please try again.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -99,6 +117,7 @@ extension SearchViewController: UISearchBarDelegate {
 //                println("Received JSON string '\(jsonString)'")
                 if let dictionary = parseJSON(jsonString) {
                     println("Dictionary \(dictionary)")
+                    parseDictionary(dictionary)
                     
                     tableView.reloadData()
                     return
