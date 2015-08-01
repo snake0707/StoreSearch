@@ -54,28 +54,14 @@ class SearchViewController: UIViewController {
         return url!
     }
     
-    func performStoreRequestWithURL(url: NSURL) -> String? {
+    func parseJSON(data: NSData) -> [String: AnyObject]? {
         var error: NSError?
-        if let resultString = String(contentsOfURL: url, encoding: NSUTF8StringEncoding, error: &error) {
-            return resultString
+        if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as? [String: AnyObject] {
+            return json
         } else if let error = error {
-            println("Download Error: \(error)")
+            println("JSON Error: \(error)")
         } else {
-            println("Unknown Download Error")
-        }
-        return nil
-    }
-    
-    func parseJSON(jsonString: String) -> [String: AnyObject]? {
-        if let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding) {
-            var error: NSError?
-            if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as? [String: AnyObject] {
-                return json
-            } else if let error = error {
-                println("JSON Error: \(error)")
-            } else {
-                println("Unknown JSON Error")
-            }
+            println("Unknown JSON Error")
         }
         return nil
     }
@@ -238,35 +224,65 @@ extension SearchViewController: UISearchBarDelegate {
             hasSearched = true
             searchResults = [SearchResult]()
             
-            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-            
-            dispatch_async(queue) {
-                let url = self.urlWithSearchText(searchBar.text)
+            let url = self.urlWithSearchText(searchBar.text)
+            let session = NSURLSession.sharedSession()
+            let dataTask = session.dataTaskWithURL(url, completionHandler: {
+                data, response, error in
                 
-                if let jsonString = self.performStoreRequestWithURL(url) {
-                    if let dictionary = self.parseJSON(jsonString) {
-                        self.searchResults = self.parseDictionary(dictionary)
-
-//                        sort method 1
-//                        searchResults.sort({result1, result2 in
-//                            return result1.name.localizedStandardCompare(result2.name) == NSComparisonResult.OrderedAscending
-//                        })
-//    
-//                        sort method 2
-//                        searchResults.sort { $0.name.localizedStandardCompare($1.name) == NSComparisonResult.OrderedAscending }
-                        self.searchResults.sort(<)
-                        
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.isLoading = false
-                            self.tableView.reloadData()
+//                println("On the main thread? " + (NSThread.currentThread().isMainThread ? "Yes" : "No"))
+                
+                if let error = error {
+                    println("Failure! \(error)")
+                } else if let httpResponse = response as? NSHTTPURLResponse {
+                    if httpResponse.statusCode == 200 {
+                        if let dictionary = self.parseJSON(data) {
+                            self.searchResults = self.parseDictionary(dictionary)
+                            self.searchResults.sort(<)
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.isLoading = false
+                                self.tableView.reloadData()
+                            }
+                            return
                         }
-                        return
-                    }
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.showNetworkError()
+                    } else {
+                        println("Failure! \(response)")
                     }
                 }
-            }
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.hasSearched = false
+                    self.isLoading = false
+                    self.tableView.reloadData()
+                    self.showNetworkError()
+                }
+                
+            })
+            
+            dataTask.resume()
+//            
+//            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+//            
+//            dispatch_async(queue) {
+//                let url = self.urlWithSearchText(searchBar.text)
+//                
+//                if let jsonString = self.performStoreRequestWithURL(url) {
+//                    if let dictionary = self.parseJSON(jsonString) {
+//                        self.searchResults = self.parseDictionary(dictionary)
+//
+//                        self.searchResults.sort(<)
+//                        
+//                        dispatch_async(dispatch_get_main_queue()) {
+//                            self.isLoading = false
+//                            self.tableView.reloadData()
+//                        }
+//                        return
+//                    }
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        self.showNetworkError()
+//                    }
+//                }
+//            }
         }
     }
     
