@@ -17,6 +17,7 @@
 		46B860E01B6A32AF00D83229 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B860DF1B6A32AF00D83229 /* SearchResultCell.xib */; };
 		46B860E21B6A436D00D83229 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B860E11B6A436D00D83229 /* SearchResultCell.swift */; };
 		46B860E41B6A4A3800D83229 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B860E31B6A4A3800D83229 /* NothingFoundCell.xib */; };
+		DA6E96891B6D194D0081700E /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA6E96881B6D194D0081700E /* LoadingCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		46B860DF1B6A32AF00D83229 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		46B860E11B6A436D00D83229 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		46B860E31B6A4A3800D83229 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		DA6E96881B6D194D0081700E /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				46B860BF1B6A0AEB00D83229 /* SearchViewController.swift */,
 				46B860E31B6A4A3800D83229 /* NothingFoundCell.xib */,
 				46B860BB1B6A0AEB00D83229 /* Supporting Files */,
+				DA6E96881B6D194D0081700E /* LoadingCell.xib */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			files = (
 				46B860C31B6A0AEB00D83229 /* Main.storyboard in Resources */,
 				46B860C81B6A0AEB00D83229 /* LaunchScreen.xib in Resources */,
+				DA6E96891B6D194D0081700E /* LoadingCell.xib in Resources */,
 				46B860E01B6A32AF00D83229 /* SearchResultCell.xib in Resources */,
 				46B860E41B6A4A3800D83229 /* NothingFoundCell.xib in Resources */,
 				46B860C51B6A0AEB00D83229 /* Images.xcassets in Resources */,
@@ -425,6 +429,7 @@
 				46B860D91B6A0AEB00D83229 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		46B860DA1B6A0AEB00D83229 /* Build configuration list for PBXNativeTarget "StoreSearchTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +438,7 @@
 				46B860DC1B6A0AEB00D83229 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
