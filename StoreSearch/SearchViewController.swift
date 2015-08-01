@@ -16,6 +16,7 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResult]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: NSURLSessionDataTask?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -218,6 +219,8 @@ extension SearchViewController: UISearchBarDelegate {
         if !searchBar.text.isEmpty {
             searchBar.resignFirstResponder()
             
+            dataTask?.cancel()
+            
             isLoading = true
             tableView.reloadData()
             
@@ -226,13 +229,12 @@ extension SearchViewController: UISearchBarDelegate {
             
             let url = self.urlWithSearchText(searchBar.text)
             let session = NSURLSession.sharedSession()
-            let dataTask = session.dataTaskWithURL(url, completionHandler: {
+            dataTask = session.dataTaskWithURL(url, completionHandler: {
                 data, response, error in
-                
-//                println("On the main thread? " + (NSThread.currentThread().isMainThread ? "Yes" : "No"))
-                
+
                 if let error = error {
                     println("Failure! \(error)")
+                    if error.code == -999 { return }
                 } else if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if let dictionary = self.parseJSON(data) {
@@ -256,33 +258,8 @@ extension SearchViewController: UISearchBarDelegate {
                     self.tableView.reloadData()
                     self.showNetworkError()
                 }
-                
             })
-            
-            dataTask.resume()
-//            
-//            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-//            
-//            dispatch_async(queue) {
-//                let url = self.urlWithSearchText(searchBar.text)
-//                
-//                if let jsonString = self.performStoreRequestWithURL(url) {
-//                    if let dictionary = self.parseJSON(jsonString) {
-//                        self.searchResults = self.parseDictionary(dictionary)
-//
-//                        self.searchResults.sort(<)
-//                        
-//                        dispatch_async(dispatch_get_main_queue()) {
-//                            self.isLoading = false
-//                            self.tableView.reloadData()
-//                        }
-//                        return
-//                    }
-//                    dispatch_async(dispatch_get_main_queue()) {
-//                        self.showNetworkError()
-//                    }
-//                }
-//            }
+            dataTask?.resume()
         }
     }
     
