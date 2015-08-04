@@ -71,10 +71,55 @@
                         <outlet property="searchBar" destination="Tzz-oM-MkN" id="GKp-aQ-GOf"/>
                         <outlet property="segmentedControl" destination="nxK-VN-gJf" id="EAI-AD-SDI"/>
                         <outlet property="tableView" destination="msa-Xl-TIt" id="Q2l-zn-10l"/>
+                        <segue destination="uA3-a7-4UC" kind="presentation" identifier="ShowDetail" id="xH4-yD-qjt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="e0W-Zg-gDj">
+            <objects>
+                <viewController id="uA3-a7-4UC" customClass="DetailViewController" customModule="StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kOC-TW-Jyh"/>
+                        <viewControllerLayoutGuide type="bottom" id="fMP-iT-6G9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xg8-ef-xwh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oep-jc-Qxq" userLabel="Pop-up View">
+                                <rect key="frame" x="180" y="180" width="240" height="240"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RnO-hz-2Qa" userLabel="Close Button">
+                                        <rect key="frame" x="3" y="0.0" width="15" height="22"/>
+                                        <state key="normal" image="CloseButton"/>
+                                        <connections>
+                                            <action selector="close" destination="uA3-a7-4UC" eventType="touchUpInside" id="asK-OC-Dkq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.95000000000000007" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="SWf-cB-7uf"/>
+                                    <constraint firstAttribute="height" constant="240" id="kaQ-nJ-16E"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="oep-jc-Qxq" secondAttribute="centerX" id="NM7-mR-iG1"/>
+                            <constraint firstAttribute="centerY" secondItem="oep-jc-Qxq" secondAttribute="centerY" id="bHu-Z6-fa1"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Llw-ZT-aqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1022" y="429"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="CloseButton" width="15" height="15"/>
+    </resources>
 </document>
