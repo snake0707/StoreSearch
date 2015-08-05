@@ -42,11 +42,14 @@ class SearchViewController: UIViewController {
         searchBar.becomeFirstResponder()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetail" {
+            let detailViewController = segue.destinationViewController as! DetailViewController
+            let indexPath = sender as! NSIndexPath
+            let searchResult = searchResults[indexPath.row]
+            detailViewController.searchResutl = searchResult
+        }
     }
-    
     struct TableViewCellIdentifiers {
         static let searchResultCell = "SearchResultCell"
         static let nothingFoundCell = "NothingFoundCell"
