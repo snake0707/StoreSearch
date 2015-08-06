@@ -44,6 +44,8 @@ class DetailViewController: UIViewController {
         if searchResutl != nil {
             updateUI()
         }
+        
+        view.backgroundColor = UIColor.clearColor()
     }
     
     required init(coder aDecoder: NSCoder) {
