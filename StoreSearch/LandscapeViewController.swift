@@ -13,6 +13,16 @@ class LandscapeViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    @IBAction func pageChanged(sender: UIPageControl) {
+        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: {
+            self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
+        }, completion: nil)
+        
+//        one page per slide??
+//        scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
+        println(sender.currentPage)
+    }
+    
     var searchResults = [SearchResult]()
     
     private var firstTime = true
@@ -30,6 +40,8 @@ class LandscapeViewController: UIViewController {
         pageControl.setTranslatesAutoresizingMaskIntoConstraints(true)
         
         scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+        
+        pageControl.numberOfPages = 0
         
     }
 
@@ -123,7 +135,16 @@ class LandscapeViewController: UIViewController {
         
         println("Number of pages: \(numPages)")
         
-//        TODO: more to come here
+        pageControl.numberOfPages = numPages
+        pageControl.currentPage = 0
     }
 
+}
+
+extension LandscapeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let width = scrollView.bounds.size.width
+        let currentPage = Int((scrollView.contentOffset.x + width / 2) / width)
+        pageControl.currentPage = currentPage
+    }
 }
