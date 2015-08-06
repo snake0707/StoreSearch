@@ -33,8 +33,8 @@ class BounceAnimationController: NSObject, UIViewControllerAnimatedTransitioning
                     UIView.addKeyframeWithRelativeStartTime(0.667, relativeDuration: 0.333, animations: {
                         toView.transform = CGAffineTransformMakeScale(1.0, 1.0)
                     })
-                    }, completion: {
-                        finished in transitionContext.completeTransition(finished)
+                    }, completion: { finished in
+                        transitionContext.completeTransition(finished)
                 })
             }
         }
