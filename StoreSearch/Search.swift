@@ -64,13 +64,14 @@ class Search {
                             var searchResutls = self.parseDictionary(dictionary)
                             if searchResutls.isEmpty {
                                 self.state = .NoResults
+                                println("Nothing Found")
                             } else {
                                 searchResutls.sort(<)
                                 self.state = .Results(searchResutls)
+                                println("Search Sucess")
                             }
                             
                             sucess = true
-                            println("Search Sucess")
                         }
                     }
                 }
