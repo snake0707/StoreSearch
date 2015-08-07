@@ -23,7 +23,8 @@ class BounceAnimationController: NSObject, UIViewControllerAnimatedTransitioning
                 
                 toView.transform = CGAffineTransformMakeScale(0.7, 0.7)
                 
-                UIView.animateKeyframesWithDuration(transitionDuration(transitionContext), delay: 0.0, options: .CalculationModeCubic, animations: {
+                UIView.animateKeyframesWithDuration(transitionDuration(transitionContext), delay: 0.0,
+                    options: .CalculationModeCubic, animations: {
                     UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.334, animations: {
                         toView.transform = CGAffineTransformMakeScale(1.2, 1.2)
                     })

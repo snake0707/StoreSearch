@@ -23,7 +23,8 @@ class LandscapeViewController: UIViewController {
         println(sender.currentPage)
     }
     
-    var searchResults = [SearchResult]()
+//    var searchResults = [SearchResult]()
+    var search: Search!
     
     private var firstTime = true
     private var downloadTasks = [NSURLSessionDownloadTask]()
@@ -90,7 +91,7 @@ class LandscapeViewController: UIViewController {
         
         if firstTime {
             firstTime = false
-            titleButtons(searchResults)
+            titleButtons(search.searchResults)
         }
     }
     
