@@ -63,10 +63,6 @@ class SearchViewController: UIViewController {
             default:
                 break
             }
-//            let detailViewController = segue.destinationViewController as! DetailViewController
-//            let indexPath = sender as! NSIndexPath
-//            let searchResult = search.searchResults[indexPath.row]
-//            detailViewController.searchResutl = searchResult
         }
     }
     
@@ -138,6 +134,10 @@ extension SearchViewController: UISearchBarDelegate {
                 }
                 
                 self.tableView.reloadData()
+                
+                if let controller = self.landscapeViewController {
+                    controller.searchResultsReceived()
+                }
             })
             
             tableView.reloadData()
@@ -162,16 +162,6 @@ extension SearchViewController: UITableViewDataSource {
         case .Results(let list):
             return list.count
         }
-        
-//        if search.isLoading {
-//            return 1
-//        } else if !search.hasSearched {
-//            return 0
-//        } else if search.searchResults.count == 0 {
-//            return 1
-//        } else {
-//            return search.searchResults.count
-//        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -198,26 +188,7 @@ extension SearchViewController: UITableViewDataSource {
             
             return cell
         }
-        
-//        if search.isLoading {
-//            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.loadingCell, forIndexPath: indexPath) as! UITableViewCell
-//            
-//            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
-//            spinner.startAnimating()
-//            
-//            return cell
-//        } else if search.searchResults.count == 0 {
-//            return tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.nothingFoundCell, forIndexPath: indexPath) as! UITableViewCell
-//        } else {
-//            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultCell
-//            
-//            let searchResult = search.searchResults[indexPath.row]
-//            cell.configureForSearchResult(searchResult)
-//            
-//            return cell
-//        }
     }
-    
 }
 
 extension SearchViewController: UITableViewDelegate {
@@ -233,12 +204,5 @@ extension SearchViewController: UITableViewDelegate {
         case .Results:
             return indexPath
         }
-        
-//        if search.searchResults.count == 0 || search.isLoading {
-//            return nil
-//        } else {
-//            return indexPath
-//        }
     }
-    
 }

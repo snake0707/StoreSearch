@@ -6,14 +6,12 @@
 //  Copyright (c) 2015年 snakeLib. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 typealias SearchComplete = (Bool) -> Void
 
 class Search {
-//    var searchResults = [SearchResult]()
-//    var hasSearched = false
-//    var isLoading = false
     
     enum State {
         case NotSearchedYet
@@ -45,13 +43,9 @@ class Search {
         if !text.isEmpty {
             dataTask?.cancel()
             
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            
             state = .Loading
-            
-//            isLoading = true
-//            hasSearched = true
-            
-//            just useless?
-//            searchResults = [SearchResult]()
             
             let url = urlWithSearchText(text, category: category)
             
@@ -75,23 +69,14 @@ class Search {
                                 self.state = .Results(searchResutls)
                             }
                             
-//                            self.searchResults = self.parseDictionary(dictionary)
-//                            self.searchResults.sort(<)
-//                            
-//                            println("Success! ")
-//                            self.isLoading = false
-                            
                             sucess = true
+                            println("Search Sucess")
                         }
                     }
                 }
-                
-//                if !sucess {
-//                    self.hasSearched = false
-//                    self.isLoading = false
-//                }
-                
+
                 dispatch_async(dispatch_get_main_queue()) {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     completion(sucess)
                 }
                 
