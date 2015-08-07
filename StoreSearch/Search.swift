@@ -15,9 +15,25 @@ class Search {
     var hasSearched = false
     var isLoading = false
     
+    enum Category: Int {
+        case All = 0
+        case Music = 1
+        case Software = 2
+        case EBook = 3
+        
+        var entityName: String {
+            switch self {
+            case .All: return ""
+            case .Music: return "musicTrack"
+            case .Software: return "software"
+            case .EBook: return "ebook"
+            }
+        }
+    }
+    
     private var dataTask: NSURLSessionDataTask? = nil
     
-    func perfoemSearchForText(text: String, category: Int, completion: SearchComplete) {
+    func perfoemSearchForText(text: String, category: Category, completion: SearchComplete) {
         println("Searching...")
         
         if !text.isEmpty {
@@ -25,6 +41,8 @@ class Search {
             
             isLoading = true
             hasSearched = true
+            
+//            just useless?
             searchResults = [SearchResult]()
             
             let url = urlWithSearchText(text, category: category)
@@ -65,14 +83,8 @@ class Search {
         }
     }
     
-    private func urlWithSearchText(searchText: String, category: Int) -> NSURL {
-        var entityName: String
-        switch category {
-        case 1: entityName = "musicTrack"
-        case 2: entityName = "software"
-        case 3: entityName = "ebook"
-        default: entityName = ""
-        }
+    private func urlWithSearchText(searchText: String, category: Category) -> NSURL {
+        let entityName = category.entityName
         
         let escapedSearchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         

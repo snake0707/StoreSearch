@@ -18,12 +18,9 @@ class LandscapeViewController: UIViewController {
             self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
         }, completion: nil)
         
-//        one page per slide??
-//        scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
         println(sender.currentPage)
     }
     
-//    var searchResults = [SearchResult]()
     var search: Search!
     
     private var firstTime = true
@@ -137,9 +134,6 @@ class LandscapeViewController: UIViewController {
         var x = marginX
         
         for (index, searchResult) in enumerate(searchResults) {
-//            let button = UIButton.buttonWithType(.System) as! UIButton
-//            button.backgroundColor = UIColor.whiteColor()
-//            button.setTitle("\(index)", forState: .Normal)
             let button = UIButton.buttonWithType(.Custom) as! UIButton
             button.setBackgroundImage(UIImage(named: "LandscapeButton"), forState: .Normal)
             button.frame = CGRect(x: x + paddingHorz, y: marginY + CGFloat(row)*itemHeight + paddingVert, width: buttonWidth, height: buttonHeight)
