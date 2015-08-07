@@ -10,10 +10,10 @@ import UIKit
 
 extension UIImage {
     func resizedImageWithBounds(bounds: CGSize) -> UIImage {
-        let minWidth = min(bounds.width, size.width)
-        let minHeight = min(bounds.height, size.height)
-        let minLength = min(minWidth, minHeight)
-        let newSize = CGSize(width: minLength, height: minLength)
+        let horizontalRatio = bounds.width / size.width
+        let verticalRatio = bounds.height / size.height
+        let ratio = min(horizontalRatio, verticalRatio)
+        let newSize = CGSize(width: ratio * size.width, height: ratio * size.height)
         
         UIGraphicsBeginImageContextWithOptions(newSize, true, 0)
         drawInRect(CGRect(origin: CGPoint.zeroPoint, size: newSize))
