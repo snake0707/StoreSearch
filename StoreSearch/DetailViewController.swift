@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
     
-    var searchResutl: SearchResult!
+    var searchResult: SearchResult!
     var downloadTask: NSURLSessionDownloadTask?
     
     enum AnimationStyle {
@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func openInStore() {
-        if let url = NSURL(string: searchResutl.storeURL) {
+        if let url = NSURL(string: searchResult.storeURL) {
             UIApplication.sharedApplication().openURL(url)
         }
     }
@@ -49,7 +49,7 @@ class DetailViewController: UIViewController {
         gestureRecognizer.delegate = self
         view.addGestureRecognizer(gestureRecognizer)
         
-        if searchResutl != nil {
+        if searchResult != nil {
             updateUI()
         }
         
@@ -68,25 +68,25 @@ class DetailViewController: UIViewController {
     }
     
     func updateUI() {
-        nameLabel.text = searchResutl.name
+        nameLabel.text = searchResult.name
         
-        if searchResutl.artistName.isEmpty {
+        if searchResult.artistName.isEmpty {
             artistNameLabel.text = "Unknown"
         } else {
-            artistNameLabel.text = searchResutl.artistName
+            artistNameLabel.text = searchResult.artistName
         }
         
-        kindLabel.text = searchResutl.kindForDisplay()
-        genreLabel.text = searchResutl.genre
+        kindLabel.text = searchResult.kindForDisplay()
+        genreLabel.text = searchResult.genre
         
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .CurrencyStyle
-        formatter.currencyCode = searchResutl.currency
+        formatter.currencyCode = searchResult.currency
         
         var priceText: String
-        if searchResutl.price == 0 {
+        if searchResult.price == 0 {
             priceText = "Free"
-        } else if let text = formatter.stringFromNumber(searchResutl.price) {
+        } else if let text = formatter.stringFromNumber(searchResult.price) {
             priceText = text
         } else {
             priceText = ""
@@ -94,7 +94,7 @@ class DetailViewController: UIViewController {
         
         priceButton.setTitle(priceText, forState: .Normal)
         
-        if let url = NSURL(string: searchResutl.artworkURL100) {
+        if let url = NSURL(string: searchResult.artworkURL100) {
             downloadTask = artworkImageView.loadImageWithRUL(url)
         }
     }

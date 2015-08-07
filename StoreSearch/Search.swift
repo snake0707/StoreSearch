@@ -61,13 +61,13 @@ class Search {
                 } else if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if let dictionary = self.parseJSON(data) {
-                            var searchResutls = self.parseDictionary(dictionary)
-                            if searchResutls.isEmpty {
+                            var searchResults = self.parseDictionary(dictionary)
+                            if searchResults.isEmpty {
                                 self.state = .NoResults
                                 println("Nothing Found")
                             } else {
-                                searchResutls.sort(<)
-                                self.state = .Results(searchResutls)
+                                searchResults.sort(<)
+                                self.state = .Results(searchResults)
                                 println("Search Sucess")
                             }
                             

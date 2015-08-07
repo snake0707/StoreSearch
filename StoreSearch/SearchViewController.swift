@@ -59,7 +59,7 @@ class SearchViewController: UIViewController {
                 let detailViewController = segue.destinationViewController as! DetailViewController
                 let indexPath = sender as! NSIndexPath
                 let searchResult = list[indexPath.row]
-                detailViewController.searchResutl = searchResult
+                detailViewController.searchResult = searchResult
             default:
                 break
             }
@@ -98,6 +98,11 @@ class SearchViewController: UIViewController {
             
             coordinator.animateAlongsideTransition({ _ in
                 controller.view.alpha = 0
+                
+                if self.presentedViewController != nil {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                
                 }, completion: { _ in
                     controller.view.removeFromSuperview()
                     controller.removeFromParentViewController()
