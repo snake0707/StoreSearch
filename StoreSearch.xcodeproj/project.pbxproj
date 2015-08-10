@@ -18,6 +18,7 @@
 		466867241B788F7C000DA469 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466867261B788F7C000DA469 /* LoadingCell.xib */; };
 		4668672B1B789584000DA469 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4668672D1B789584000DA469 /* SearchResultCell.xib */; };
 		466867301B789A26000DA469 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4668672E1B789A26000DA469 /* Localizable.strings */; };
+		466867341B78A65E000DA469 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 466867361B78A65E000DA469 /* InfoPlist.strings */; };
 		467448351B7062F8007DB46B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467448341B7062F8007DB46B /* DetailViewController.swift */; };
 		467448371B706A9C007DB46B /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467448361B706A9C007DB46B /* DimmingPresentationController.swift */; };
 		46B860BE1B6A0AEB00D83229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B860BD1B6A0AEB00D83229 /* AppDelegate.swift */; };
@@ -56,6 +57,8 @@
 		4668672C1B789584000DA469 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchResultCell.xib; sourceTree = "<group>"; };
 		4668672F1B789A26000DA469 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		466867311B789B24000DA469 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		466867351B78A65E000DA469 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		466867371B78A680000DA469 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		467448341B7062F8007DB46B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		467448361B706A9C007DB46B /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		46B860B81B6A0AEB00D83229 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +134,7 @@
 				46665D521B74658A00DF3722 /* UIImage+Resize.swift */,
 				DA6E968A1B6D4B8A0081700E /* UIImageView+DownloadImage.swift */,
 				46665D541B74837F00DF3722 /* Search.swift */,
+				466867361B78A65E000DA469 /* InfoPlist.strings */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -243,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46B860C31B6A0AEB00D83229 /* Main.storyboard in Resources */,
+				466867341B78A65E000DA469 /* InfoPlist.strings in Resources */,
 				466867301B789A26000DA469 /* Localizable.strings in Resources */,
 				466867241B788F7C000DA469 /* LoadingCell.xib in Resources */,
 				4668672B1B789584000DA469 /* SearchResultCell.xib in Resources */,
@@ -334,6 +339,15 @@
 				466867311B789B24000DA469 /* nl */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		466867361B78A65E000DA469 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				466867351B78A65E000DA469 /* Base */,
+				466867371B78A680000DA469 /* nl */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		46B860C11B6A0AEB00D83229 /* Main.storyboard */ = {
