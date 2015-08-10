@@ -38,9 +38,9 @@ class SearchResultCell: UITableViewCell {
         nameLabel.text = searchResult.name
         
         if searchResult.artistName.isEmpty {
-            artistNameLabel.text = "Unknown"
+            artistNameLabel.text = NSLocalizedString("Unknown", comment: "SearchResultCell, artistName is Empty: Unknown")
         } else {
-            artistNameLabel.text = String(format: "%@ (%@)", searchResult.artistName, searchResult.kindForDisplay())
+            artistNameLabel.text = String(format: NSLocalizedString("ARTIST_NAME_LABEL_FORMAT", comment: "Format for artist name label"), searchResult.artistName, searchResult.kindForDisplay())
         }
         
         artworkImageView.image = UIImage(named: "Placeholder")
