@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cfc-cu-6Aj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -76,6 +76,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="263" y="195"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XIS-hU-Tm8">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BMx-K8-rH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="6IR-fw-DdC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EAD-O4-ucL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uA3-a7-4UC" kind="relationship" relationship="rootViewController" id="yww-jn-ySF"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="1091" y="-266"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="41v-lv-Imc">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kXT-MF-1m3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <splitViewController id="Cfc-cu-6Aj" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="masterViewController" id="Gu5-0Z-mGn"/>
+                        <segue destination="6IR-fw-DdC" kind="relationship" relationship="detailViewController" id="yuh-AP-avG"/>
+                    </connections>
+                </splitViewController>
+            </objects>
+            <point key="canvasLocation" x="-548" y="-266"/>
         </scene>
         <!--Landscape View Controller-->
         <scene sceneID="FZV-s4-Frm">
@@ -112,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0PF-SI-f6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="314" y="1014"/>
+            <point key="canvasLocation" x="-548" y="677"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="e0W-Zg-gDj">
@@ -233,6 +263,7 @@
                             <constraint firstAttribute="centerY" secondItem="oep-jc-Qxq" secondAttribute="centerY" id="bHu-Z6-fa1"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="EQH-Qj-Csk"/>
                     <connections>
                         <outlet property="artistNameLabel" destination="mCr-p9-ju1" id="ov1-4l-ND9"/>
                         <outlet property="artworkImageView" destination="hFi-yQ-YLf" id="qIM-x4-5ty"/>
@@ -253,6 +284,6 @@
         <image name="PriceButton" width="11" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cOs-ha-FXy"/>
+        <segue reference="xH4-yD-qjt"/>
     </inferredMetricsTieBreakers>
 </document>
