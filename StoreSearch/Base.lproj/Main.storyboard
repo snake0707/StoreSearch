@@ -81,7 +81,6 @@
         <!--Navigation Controller-->
         <scene sceneID="XIS-hU-Tm8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BMx-K8-rH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="6IR-fw-DdC" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EAD-O4-ucL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -91,19 +90,20 @@
                         <segue destination="uA3-a7-4UC" kind="relationship" relationship="rootViewController" id="yww-jn-ySF"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BMx-K8-rH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1091" y="-266"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="41v-lv-Imc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kXT-MF-1m3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <splitViewController id="Cfc-cu-6Aj" sceneMemberID="viewController">
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="masterViewController" id="Gu5-0Z-mGn"/>
                         <segue destination="6IR-fw-DdC" kind="relationship" relationship="detailViewController" id="yuh-AP-avG"/>
                     </connections>
                 </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kXT-MF-1m3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-548" y="-266"/>
         </scene>

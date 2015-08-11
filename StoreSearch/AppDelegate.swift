@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         customizeAppearance()
         detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+        searchViewController.splitViewDetail = detailViewController
         return true
     }
 
